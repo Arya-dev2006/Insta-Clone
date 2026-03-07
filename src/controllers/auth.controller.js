@@ -54,7 +54,7 @@ async function loginController(req,res){
     const token = jwt.sign({
         id: isUserExist._id,
     }, process.env.JWT_SECRET,{expiresIn:"1d"});
-    res.cookie('token',token);
+    res.cookie('jwt',token);
 
     res.send("login successful");
 }
