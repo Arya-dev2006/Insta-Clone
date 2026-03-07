@@ -7,14 +7,7 @@ const client = new ImageKit({
 });
 
 async function postCreate(req,res){
-    const token = req.cookies.jwt;
-    let isValidUser = null;
-    try{
-     isValidUser = jwt.verify(token,process.env.JWT_SECRET);
-    }
-    catch (error){
-        return res.send("Unotherized Access");
-    }
+   
   const result =  await client.files.upload({
   file: await toFile(Buffer.from(req.file.buffer), 'file'),
   fileName: 'image',
@@ -22,38 +15,24 @@ async function postCreate(req,res){
     const post = await postModel.create({
         caption: req.body.caption,
         imageUrl: result.url,
-        user:isValidUser.id,
+        user:req.user.id,
     });
     console.log(post);
     res.send("post created")
 }
 
 async function getPost(req,res){
-    const token = req.cookies.jwt;
-    let isValidUser = null;
-    try{
-     isValidUser = jwt.verify(token,process.env.JWT_SECRET);
-    }
-    catch (error){
-        return res.send("Unotherized Access");
-    }
+   
     const post = await postModel.find({
-        user:isValidUser.id,
+        user:req.user.id,
     });
     res.send(post);
 }
 
 async function postDetails(req,res){
-    const token = req.cookies.jwt;
-    let isValidUser =null;
-    try{
-        isValidUser  = jwt.verify(token,process.env.JWT_SECRET);
-    }
-    catch(err){
-       return res.send("unotherized access");
-    }
+    
     const postID = req.params.postID;
-    const userId = isValidUser.id;
+    const userId = req.user.id;
     const post = await postModel.findById(postID);
     if(!post){
        return res.send("post not available");
