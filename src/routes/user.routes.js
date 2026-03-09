@@ -5,4 +5,5 @@ const verifyUser = require('../middleware/auth.middleware');
 
 userRouter.post('/follow/:userid',verifyUser,followController.followCreation);
 userRouter.post('/unfollow/:userID',verifyUser,followController.unfollowuser);
+userRouter.post('/like/:postId',verifyUser,followController.likePost);
 module.exports = userRouter;
