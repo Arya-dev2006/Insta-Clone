@@ -78,8 +78,23 @@ async function likePost(req,res){
         res.send(likes)
 
 }
+
+async function acceptFollow(req,res){
+    const followeUserName = req.user.username;
+    const userId = req.params.followId;
+    const followe = await userModel.findById(userId);
+    const followerName = followe.username;
+    console.log(followerName);
+    console.log(followeUserName);
+    const acceptFollow = await followModel.updateOne(
+        {follower:followerName,followe:followeUserName},
+        {status:"Accepted"},
+    )
+    res.send(acceptFollow);
+}
 module.exports = {
     followCreation,
     unfollowuser,
     likePost,
+    acceptFollow,
 };
