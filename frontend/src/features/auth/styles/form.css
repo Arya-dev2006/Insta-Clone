@@ -1,0 +1,39 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+main .form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+main .form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+main .form-container form input {
+  font-size: 1rem;
+  padding-inline: 5rem;
+  padding-block: 1rem;
+  border-radius: 0.7rem;
+  border: none;
+}
+main .form-container form button {
+  font-size: 1rem;
+  padding-block: 1rem;
+  border-radius: 0.7rem;
+  border: none;
+  background-color: #0095f6;
+  color: white;
+  cursor: pointer;
+}
+main .form-container h3 {
+  font-size: 0.9rem;
+}
+main .form-container h3 a {
+  color: #0095f6;
+  text-decoration: none;
+}/*# sourceMappingURL=form.css.map */
